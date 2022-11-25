@@ -28,7 +28,7 @@ builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(conn
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();
-builder.Services.AddSwaggerGen(options => {
+/*builder.Services.AddSwaggerGen(options => {
     options.SwaggerDoc("v1", new Microsoft.OpenApi.Models.OpenApiInfo
     {
         Title = "CloudBees",
@@ -55,7 +55,7 @@ builder.Services.AddSwaggerGen(options => {
         { securitySchema, new[] { "Bearer"} }
     };
     options.AddSecurityRequirement(securityRequirement);
-});
+});*/
 
 builder.Services.AddIdentity<User, Role>(options =>
 {
