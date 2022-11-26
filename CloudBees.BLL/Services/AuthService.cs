@@ -90,6 +90,11 @@ public class AuthService : IAuthService
         return result;
     }
 
+    public async Task<string> GetLoggedUserId()
+    {
+        var user = await GetLoggedUser();
+        return user.Id;
+    }
     public string GetLoggedUserName()
     {
         var result = string.Empty;
@@ -99,4 +104,5 @@ public class AuthService : IAuthService
         }
         return result;
     }
+
 }

@@ -9,6 +9,7 @@ namespace CloudBees.BLL.Services
         Task<bool> CheckPassword(LoginDTO request);
         Task<JwtSecurityToken> GenerateToken(LoginDTO userLogin, bool rememberMe);
         Task<User> GetLoggedUser();
+        Task<string> GetLoggedUserId();
         string GetLoggedUserName();
         Task<string> SignUp(RegisterDTO signup);
     }

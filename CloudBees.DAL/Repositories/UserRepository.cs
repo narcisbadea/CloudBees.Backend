@@ -1,4 +1,5 @@
 ﻿using CloudBees.DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -7,33 +8,14 @@ namespace CloudBees.DAL.Repositories;
 public class UserRepository : IUserRepository
 {
     private readonly AppDbContext _dbContext;
+    private readonly UserManager<User> _userManager;
 
-    public UserRepository(AppDbContext dbContext)
+    public UserRepository(AppDbContext dbContext, UserManager<User> userManager)
     {
         _dbContext = dbContext;
+        _userManager = userManager;
     }
 
-    public async Task<IEnumerable<User>> GetAllUsersAsync()
-    {
-        return await _dbContext.Users
-            .AsNoTracking()
-            .ToListAsync();
-    }
-
-    public async Task<User?> GetUserByIdAsync(string userId)
-    {
-        return await _dbContext.Users
-            .AsNoTracking()
-            .Where(user => user.Id == userId)
-            .SingleOrDefaultAsync();
-    }
-
-    public async Task<User?> GetTrakedUserByIdAsync(string userId)
-    {
-        return await _dbContext.Users
-            .Where(user => user.Id == userId)
-            .SingleOrDefaultAsync();
-    }
 
     public async Task<string> CreateUserAsync(User user)
     {
@@ -50,10 +32,16 @@ public class UserRepository : IUserRepository
         await _dbContext.SaveChangesAsync();
     }
 
-    public async Task<User?> GetUserByName(string userName)
+    public async Task<User> GetUserById(string userId)
     {
-        return await _dbContext.Users
-            .Where(u => u.UserName == userName)
-            .FirstOrDefaultAsync();
+        var result = await _userManager.FindByIdAsync(userId);
+        return result;
     }
+
+    public async Task<User> GetUserByName(string name)
+    {
+        var result = await _userManager.FindByNameAsync(name);
+        return result;
+    }
+
 }
