@@ -6,9 +6,7 @@ namespace CloudBees.DAL.Repositories
     {
         Task<string> CreateUserAsync(User user);
         Task DeleteUserAsync(User user);
-        Task<IEnumerable<User>> GetAllUsersAsync();
-        Task<User?> GetTrakedUserByIdAsync(string userId);
-        Task<User?> GetUserByIdAsync(string userId);
-        Task<User?> GetUserByName(string userName);
+        Task<User> GetUserById(string userId);
+        Task<User> GetUserByName(string name);
     }
 }

@@ -14,12 +14,15 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
-builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAlertService, AlertService>();
 builder.Services.AddHttpContextAccessor();
 
 
 //Repositories
-builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAlertRepository, AlertRepository>();
+builder.Services.AddScoped<IAlertTypeRepository, AlertTypeRepository>();
 
 var connectionString = builder.Configuration["ConnectionStrings:SQLserver"];
 

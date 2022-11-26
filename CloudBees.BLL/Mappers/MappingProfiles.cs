@@ -9,5 +9,9 @@ public class MappingProfiles : Profile
     public MappingProfiles()
     {
         CreateMap<RegisterDTO, User>().ReverseMap();
+        CreateMap<AlertDTO, Alert>();
+        CreateMap<AlertRequestDTO, Alert>().ReverseMap();
+        CreateMap<Alert, AlertDTO>()
+            .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.Type));
     }
 }
