@@ -1,11 +1,6 @@
 ﻿using CloudBees.DAL.Entities;
 using CloudBees.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace CloudBees.DAL.Repositories.Implementation;
 
@@ -37,6 +32,18 @@ public class AlertTypeRepository : IAlertTypeRepository
         {
             await _appDbContext.SaveChangesAsync();
             return "Added";
+        }
+        return "Error";
+    }
+
+    public async Task<string> DeletAlertType(string id)
+    {
+        var alertTypeTODelete = await _appDbContext.AlertTypes.FirstOrDefaultAsync(a => a.Id == id);
+        var result = _appDbContext.AlertTypes.Remove(alertTypeTODelete);
+        if(result.State == EntityState.Deleted)
+        {
+            await _appDbContext.SaveChangesAsync();
+            return "Deleted";
         }
         return "Error";
     }
