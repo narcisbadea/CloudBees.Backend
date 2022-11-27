@@ -38,4 +38,15 @@ public class AlertService : IAlertService
         var result = await _alertRepository.PostAlert(toAdd);
         return result;
     }
+
+    public async Task<string> DeleteAlert(string id)
+    {
+        return await _alertRepository.DeleteAlert(id);
+    }
+
+    public async Task<AlertDTO?> GetAlertByIdAsync(string id)
+    {
+        var result = await _alertRepository.GetAlertByIdAsync(id);
+        return _mapper.Map<AlertDTO>(result);
+    }
 }
