@@ -36,4 +36,10 @@ public class AlertTypeController : ControllerBase
         var result = await _alertTypeService.PostAlertType(type);
         return Ok(result);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<string>> DeleteAlertType(string id)
+    {
+        return Ok(await _alertTypeService.DeletAlertType(id));
+    }
 }

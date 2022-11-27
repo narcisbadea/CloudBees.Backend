@@ -32,4 +32,9 @@ public class AlertTypeService : IAlertTypeService
         var result = await _alertTypeRepository.PostAlertType(new AlertType { Id = Guid.NewGuid().ToString(), Type = type });
         return result;
     }
+
+    public async Task<string> DeletAlertType(string id)
+    {
+        return await _alertTypeRepository.DeletAlertType(id);
+    }
 }
