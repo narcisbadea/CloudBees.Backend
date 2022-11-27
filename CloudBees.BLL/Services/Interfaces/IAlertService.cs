@@ -1,7 +1,7 @@
 ﻿using CloudBees.BLL.DTOs;
 using CloudBees.DAL.Entities;
 
-namespace CloudBees.BLL.Services
+namespace CloudBees.BLL.Services.Interfaces
 {
     public interface IAlertService
     {

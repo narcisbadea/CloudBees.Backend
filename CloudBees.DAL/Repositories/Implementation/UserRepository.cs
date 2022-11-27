@@ -1,9 +1,10 @@
 ﻿using CloudBees.DAL.Entities;
+using CloudBees.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
-namespace CloudBees.DAL.Repositories;
+namespace CloudBees.DAL.Repositories.Implementation;
 
 public class UserRepository : IUserRepository
 {

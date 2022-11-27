@@ -1,14 +1,10 @@
 ﻿using AutoMapper;
 using CloudBees.BLL.DTOs;
+using CloudBees.BLL.Services.Interfaces;
 using CloudBees.DAL.Entities;
-using CloudBees.DAL.Repositories;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using CloudBees.DAL.Repositories.Interfaces;
 
-namespace CloudBees.BLL.Services;
+namespace CloudBees.BLL.Services.Implementation;
 
 public class AlertService : IAlertService
 {
