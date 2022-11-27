@@ -2,7 +2,7 @@ name: Build and deploy .NET Core application to Web App CloudBeesAPI with API Ma
 on:
   push:
     branches:
-    - devops
+    - main
 env:
   AZURE_WEBAPP_NAME: CloudBeesAPI
   AZURE_WEBAPP_PACKAGE_PATH: CloudBees.API\publish
