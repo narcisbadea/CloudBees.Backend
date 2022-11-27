@@ -31,4 +31,24 @@ public class AlertRepository : IAlertRepository
         }
         return "Error";
     }
+
+    public async Task<string> DeleteAlert(string id)
+    {
+        var entity = await _dbcontrext.Alerts.FirstOrDefaultAsync(a => a.Id == id);
+        var result = _dbcontrext.Alerts.Remove(entity);
+        if(result.State == EntityState.Deleted)
+        {
+            await _dbcontrext.SaveChangesAsync();
+            return "Deleted";
+        }
+        return "Error";
+    }
+
+    public async Task<Alert?> GetAlertByIdAsync(string id)
+    {
+        var result = await _dbcontrext.Alerts
+            .Include(a => a.Type)
+            .FirstOrDefaultAsync(a => a.Id == id);
+        return result;
+    }
 }
