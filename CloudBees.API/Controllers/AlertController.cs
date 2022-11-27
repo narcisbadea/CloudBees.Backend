@@ -38,4 +38,16 @@ public class AlertController : ControllerBase
         var result = await _alertService.PostAlert(alert, user);
         return Ok(result);
     }
+
+    [HttpDelete("{id}")]
+    public async Task<ActionResult<string>> DeleteAlert(string id)
+    {
+        return Ok(await _alertService.DeleteAlert(id));
+    }
+
+    [HttpGet("{id}")]
+    public async Task<ActionResult<AlertDTO>> GetAlertById(string id)
+    {
+        return Ok(await _alertService.GetAlertByIdAsync(id));
+    }
 }
