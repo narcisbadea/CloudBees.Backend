@@ -1,6 +1,6 @@
 ﻿using CloudBees.DAL.Entities;
 
-namespace CloudBees.DAL.Repositories
+namespace CloudBees.DAL.Repositories.Interfaces
 {
     public interface IAlertRepository
     {

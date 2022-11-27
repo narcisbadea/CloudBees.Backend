@@ -2,7 +2,7 @@
 using CloudBees.BLL;
 using CloudBees.BLL.DTOs;
 using CloudBees.BLL.Services;
-using CloudBees.DAL.Entities;
+using CloudBees.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

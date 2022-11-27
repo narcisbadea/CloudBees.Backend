@@ -2,7 +2,7 @@
 using CloudBees.DAL.Entities;
 using System.IdentityModel.Tokens.Jwt;
 
-namespace CloudBees.BLL.Services
+namespace CloudBees.BLL.Services.Interfaces
 {
     public interface IAuthService
     {

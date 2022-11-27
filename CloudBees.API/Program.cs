@@ -1,8 +1,10 @@
 using CloudBees.BLL.Mapper;
-using CloudBees.BLL.Services;
+using CloudBees.BLL.Services.Implementation;
+using CloudBees.BLL.Services.Interfaces;
 using CloudBees.DAL;
 using CloudBees.DAL.Entities;
-using CloudBees.DAL.Repositories;
+using CloudBees.DAL.Repositories.Implementation;
+using CloudBees.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -16,6 +18,7 @@ var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
 builder.Services.AddScoped<IAuthService, AuthService>();
 builder.Services.AddScoped<IAlertService, AlertService>();
+builder.Services.AddScoped<IAlertTypeService, AlertTypeService>();
 builder.Services.AddHttpContextAccessor();
 
 
