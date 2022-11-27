@@ -1,8 +1,10 @@
 using CloudBees.BLL.Mapper;
-using CloudBees.BLL.Services;
+using CloudBees.BLL.Services.Implementation;
+using CloudBees.BLL.Services.Interfaces;
 using CloudBees.DAL;
 using CloudBees.DAL.Entities;
-using CloudBees.DAL.Repositories;
+using CloudBees.DAL.Repositories.Implementation;
+using CloudBees.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -14,12 +16,16 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddAutoMapper(typeof(MappingProfiles));
-builder.Services.AddTransient<IAuthService, AuthService>();
+builder.Services.AddScoped<IAuthService, AuthService>();
+builder.Services.AddScoped<IAlertService, AlertService>();
+builder.Services.AddScoped<IAlertTypeService, AlertTypeService>();
 builder.Services.AddHttpContextAccessor();
 
 
 //Repositories
-builder.Services.AddTransient<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IUserRepository, UserRepository>();
+builder.Services.AddScoped<IAlertRepository, AlertRepository>();
+builder.Services.AddScoped<IAlertTypeRepository, AlertTypeRepository>();
 
 var connectionString = builder.Configuration["ConnectionStrings:SQLserver"];
 

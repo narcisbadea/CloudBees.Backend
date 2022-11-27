@@ -1,7 +1,8 @@
 ﻿using AutoMapper;
 using CloudBees.BLL.DTOs;
+using CloudBees.BLL.Services.Interfaces;
 using CloudBees.DAL.Entities;
-using CloudBees.DAL.Repositories;
+using CloudBees.DAL.Repositories.Interfaces;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.Extensions.Configuration;
@@ -10,7 +11,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
 using System.Text;
 
-namespace CloudBees.BLL.Services;
+namespace CloudBees.BLL.Services.Implementation;
 
 public class AuthService : IAuthService
 {
@@ -90,6 +91,11 @@ public class AuthService : IAuthService
         return result;
     }
 
+    public async Task<string> GetLoggedUserId()
+    {
+        var user = await GetLoggedUser();
+        return user.Id;
+    }
     public string GetLoggedUserName()
     {
         var result = string.Empty;
@@ -99,4 +105,5 @@ public class AuthService : IAuthService
         }
         return result;
     }
+
 }
