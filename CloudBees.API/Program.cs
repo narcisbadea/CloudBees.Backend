@@ -91,14 +91,6 @@ builder.Services.AddAuthentication(options =>
            IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(builder.Configuration["JWT:Key"]))
        };
    });
-builder.Services.AddCors(options => options.AddPolicy("EnableAll", policy =>
-{
-    policy.AllowAnyOrigin();
-    policy.AllowAnyMethod();
-    policy.AllowAnyHeader();
-    policy.WithExposedHeaders("www-authenticate");
-}));
-
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -108,8 +100,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app.UseCors("EnableAll");
-
 app.UseHttpsRedirection();
 
 app.UseAuthentication();
@@ -117,5 +107,10 @@ app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllers();
+
+app.UseCors(x => x
+    .AllowAnyOrigin()
+    .AllowAnyMethod()
+    .AllowAnyHeader());
 
 app.Run();
