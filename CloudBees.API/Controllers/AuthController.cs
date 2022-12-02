@@ -35,7 +35,7 @@ public class AuthController : ControllerBase
 
         var token = await _authService.GenerateToken(request, rememberMe);
 
-        return Ok((new JwtSecurityTokenHandler().WriteToken(token)).ToString());
+        return Ok(new { token = (new JwtSecurityTokenHandler().WriteToken(token)).ToString() });
     }
 
     [HttpGet("logged-username")]
