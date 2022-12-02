@@ -30,7 +30,7 @@ public class AuthController : ControllerBase
     {
         if (!await _authService.CheckPassword(request))
         {
-            return BadRequest("Invalid password or user not found!");
+            return BadRequest(new { Message = "Invalid password or user not found!" });
         }
 
         var token = await _authService.GenerateToken(request, rememberMe);
