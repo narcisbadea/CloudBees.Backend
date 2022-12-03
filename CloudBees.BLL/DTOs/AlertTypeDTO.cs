@@ -8,7 +8,6 @@ namespace CloudBees.BLL.DTOs;
 
 public class AlertTypeDTO
 {
-    public string value { get; set; }
-    public string label { get; set; }
-    public string id { get; set; }
+    public string Id { get; set; }
+    public string Type { get; set; }
 }

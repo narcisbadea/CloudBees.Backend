@@ -13,9 +13,6 @@ public class MappingProfiles : Profile
         CreateMap<AlertRequestDTO, Alert>().ReverseMap();
         CreateMap<Alert, AlertDTO>()
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.Type));
-        CreateMap<AlertType, AlertTypeDTO>()
-            .ForMember(dest => dest.label, opt => opt.MapFrom(src => src.Type))
-            .ForMember(dest => dest.value, opt => opt.MapFrom(src => src.Type))
-            .ForMember(dest => dest.id, opt => opt.MapFrom(src => src.Id));
+        CreateMap<AlertType, AlertTypeDTO>();
     }
 }
