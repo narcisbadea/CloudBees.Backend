@@ -16,6 +16,7 @@ public class AlertRepository : IAlertRepository
     public async Task<IEnumerable<Alert>?> GetAllAlerts()
     {
         return await _dbcontrext.Alerts
+            .Include(a => a.User)
             .Include(a => a.Type)
             .AsNoTracking()
             .ToListAsync();
