@@ -1,10 +1,13 @@
 ﻿using AutoMapper;
 using CloudBees.BLL;
 using CloudBees.BLL.DTOs;
-using CloudBees.BLL.Services;
 using CloudBees.BLL.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Nest;
+using System.Data;
+using System.Net;
+using System.Text;
 
 namespace CloudBees.API.Controllers;
 
@@ -26,6 +29,20 @@ public class AlertController : ControllerBase
     [HttpGet]
     public async Task<ActionResult<IEnumerable<AlertDTO>>> GetAllAlerts()
     {
+        string url = "https://maps.googleapis.com/maps/api/distancematrix/xml?origins=" + "45.7669338,21.2282715" + "&destinations=" + "45.75,21.2399997";
+        WebRequest request = WebRequest.Create(url);
+        using (WebResponse response = (HttpWebResponse)request.GetResponse())
+        {
+            using (StreamReader reader = new StreamReader(response.GetResponseStream(), Encoding.UTF8))
+            {
+                DataSet dsResult = new DataSet();
+                dsResult.ReadXml(reader);
+                //lblOriginAddress.Text = dsResult.Tables["DistanceMatrixResponse"].Rows[0]["origin_address"].ToString();
+                //lblDestinationAddress.Text = dsResult.Tables["DistanceMatrixResponse"].Rows[0]["destination_address"].ToString();
+                var dur = dsResult.Tables["duration"].Rows[0]["text"].ToString();
+                var dist = dsResult.Tables["duration"].Rows[0]["value"].ToString() + dsResult.Tables["distance"].Rows[0]["text"].ToString();
+            }
+        }
         var result = await _alertService.GetAll();
         return Ok(result);
     }

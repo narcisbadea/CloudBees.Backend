@@ -33,6 +33,14 @@ public class AlertRepository : IAlertRepository
 
     public async Task<string> PostAlert(Alert alert)
     {
+        var alertExist = await _dbcontrext.Alerts
+            .Include(a => a.Type)
+            .Where(a => a.Location== alert.Location && a.Type.Type == alert.Type.Type)
+            .ToListAsync();
+        if (alertExist.Count > 0)
+        {
+            return "Error, alert alrady exist!";
+        }
         var result = await _dbcontrext.AddAsync(alert);
         if (result.State == EntityState.Added)
         {
