@@ -13,6 +13,6 @@ public class Alert
     public User User { get; set; }
     public decimal Latitude { get; set; }
     public decimal Longitude { get; set; }
-    public string Status { get; set; }
-    public string Photo { get; set; }
+    public string? Status { get; set; }
+    public string? Photo { get; set; }
 }

@@ -12,6 +12,4 @@ public class AlertRequestDTO
     public string TypeId { get; set; }
     public decimal Latitude { get; set; }
     public decimal Longitude { get; set; }
-    public string Status { get; set; }
-    public string Photo { get; set; }
 }
