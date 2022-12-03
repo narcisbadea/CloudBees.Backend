@@ -10,7 +10,7 @@ namespace CloudBees.BLL.DTOs;
 public class AlertRequestDTO
 {
     public string TypeId { get; set; }
-    public decimal Latitude { get; set; }
-    public decimal Longitude { get; set; }
+    public float Latitude { get; set; }
+    public float Longitude { get; set; }
     public string Location { get; set; }
 }

@@ -11,7 +11,7 @@ public class Alert
     public string Id { get; set; }
     public AlertType Type { get; set; }
     public User User { get; set; }
-    public decimal Latitude { get; set; }
-    public decimal Longitude { get; set; }
+    public float Latitude { get; set; }
+    public float Longitude { get; set; }
     public string? Location { get; set; }
 }
