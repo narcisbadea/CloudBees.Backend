@@ -1,4 +1,5 @@
-﻿using CloudBees.DAL.Entities;
+﻿using CloudBees.BLL.DTOs;
+using CloudBees.DAL.Entities;
 
 namespace CloudBees.BLL.Services.Interfaces
 {
@@ -6,7 +7,7 @@ namespace CloudBees.BLL.Services.Interfaces
     {
         Task<string> DeletAlertType(string id);
         Task<string> GetAlertTypeByIdAsync(string alertTypeId);
-        Task<IEnumerable<AlertType>> GetAllAlertTypes();
+        Task<IEnumerable<AlertTypeDTO>> GetAllAlertTypes();
         Task<string> PostAlertType(string type);
     }
 }

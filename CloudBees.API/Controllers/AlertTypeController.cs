@@ -1,4 +1,5 @@
-﻿using CloudBees.BLL.Services.Interfaces;
+﻿using CloudBees.BLL.DTOs;
+using CloudBees.BLL.Services.Interfaces;
 using CloudBees.DAL;
 using CloudBees.DAL.Entities;
 using Microsoft.AspNetCore.Mvc;
@@ -24,7 +25,7 @@ public class AlertTypeController : ControllerBase
     }
 
     [HttpGet]
-    public async Task<ActionResult<IEnumerable<AlertType>>> GetAllAlertTypes()
+    public async Task<ActionResult<IEnumerable<AlertTypeDTO>>> GetAllAlertTypes()
     {
         var result = await _alertTypeService.GetAllAlertTypes();
         return Ok(result);
