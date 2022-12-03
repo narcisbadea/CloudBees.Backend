@@ -26,6 +26,14 @@ public class AlertService : IAlertService
         return _mapper.Map<IEnumerable<Alert>, IEnumerable<AlertDTO>>(result);
     }
 
+    public async Task<IEnumerable<AlertDTO>?> GetAllAlertsForLoggedUserAsync( string userId)
+    {
+        var result = await _alertRepository.GetAllAlertsForLoggedUser(userId);
+        return _mapper.Map<IEnumerable<Alert>, IEnumerable<AlertDTO>>(result);
+    }
+
+
+
     public async Task<string> PostAlert(AlertRequestDTO alert, User user)
     {
         var toAdd = _mapper.Map<Alert>(alert);

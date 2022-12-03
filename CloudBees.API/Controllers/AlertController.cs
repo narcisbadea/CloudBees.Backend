@@ -30,6 +30,15 @@ public class AlertController : ControllerBase
         return Ok(result);
     }
 
+    [HttpGet("logged-user")]
+    [Authorize]
+    public async Task<ActionResult<IEnumerable<AlertDTO>>> GetAlertsForLoggedUser()
+    {
+        var userId = await _authService.GetLoggedUserId();
+        var result = await _alertService.GetAllAlertsForLoggedUserAsync(userId);
+        return Ok(result);
+    }
+
     [HttpPost]
     [Authorize]
     public async Task<ActionResult<string>> PostAlert(AlertRequestDTO alert)

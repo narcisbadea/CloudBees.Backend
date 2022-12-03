@@ -21,6 +21,16 @@ public class AlertRepository : IAlertRepository
             .ToListAsync();
     }
 
+    public async Task<IEnumerable<Alert>?> GetAllAlertsForLoggedUser(string idUser)
+    {
+        return await _dbcontrext.Alerts
+            .Include(a => a.Type)
+            .Include(a => a.User)
+            .Where(a => a.User.Id == idUser)
+            .AsNoTracking()
+            .ToListAsync();
+    }
+
     public async Task<string> PostAlert(Alert alert)
     {
         var result = await _dbcontrext.AddAsync(alert);

@@ -8,6 +8,7 @@ namespace CloudBees.BLL.Services.Interfaces
         Task<string> DeleteAlert(string id);
         Task<AlertDTO?> GetAlertByIdAsync(string id);
         Task<IEnumerable<AlertDTO>?> GetAll();
+        Task<IEnumerable<AlertDTO>?> GetAllAlertsForLoggedUserAsync(string userId);
         Task<string> PostAlert(AlertRequestDTO alert, User user);
     }
 }

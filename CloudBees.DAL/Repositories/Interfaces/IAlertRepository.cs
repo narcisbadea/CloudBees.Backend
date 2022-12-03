@@ -7,6 +7,7 @@ namespace CloudBees.DAL.Repositories.Interfaces
         Task<string> DeleteAlert(string id);
         Task<Alert?> GetAlertByIdAsync(string id);
         Task<IEnumerable<Alert>?> GetAllAlerts();
+        Task<IEnumerable<Alert>?> GetAllAlertsForLoggedUser(string idUser);
         Task<string> PostAlert(Alert alert);
     }
 }

@@ -13,6 +13,5 @@ public class AlertDTO
     public string Type { get; set; }
     public decimal Latitude { get; set; }
     public decimal Longitude { get; set; }
-    public string Status { get; set; }
-    public string Photo { get; set; }
+    public string Location { get; set; }
 }
