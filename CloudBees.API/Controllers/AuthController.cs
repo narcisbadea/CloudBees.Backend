@@ -32,7 +32,6 @@ public class AuthController : ControllerBase
         {
             return BadRequest(new { Message = "Invalid password or user not found!" });
         }
-
         var token = await _authService.GenerateToken(request, request.rememberMe);
         var expires = request.rememberMe ? 240 : 30;
         return Ok(new { token = (new JwtSecurityTokenHandler().WriteToken(token)).ToString(), expiresIn = expires });
