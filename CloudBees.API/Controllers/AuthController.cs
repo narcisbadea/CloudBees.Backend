@@ -26,14 +26,14 @@ public class AuthController : ControllerBase
     }
 
     [HttpPost("login")]
-    public async Task<ActionResult<string>> Login(LoginDTO request, bool rememberMe)
+    public async Task<ActionResult<string>> Login(LoginDTO request)
     {
         if (!await _authService.CheckPassword(request))
         {
             return BadRequest(new { Message = "Invalid password or user not found!" });
         }
 
-        var token = await _authService.GenerateToken(request, rememberMe);
+        var token = await _authService.GenerateToken(request, request.rememberMe);
 
         return Ok(new { token = (new JwtSecurityTokenHandler().WriteToken(token)).ToString() });
     }
