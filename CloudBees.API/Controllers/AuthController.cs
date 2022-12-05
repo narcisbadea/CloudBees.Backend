@@ -34,8 +34,8 @@ public class AuthController : ControllerBase
         }
 
         var token = await _authService.GenerateToken(request, request.rememberMe);
-
-        return Ok(new { token = (new JwtSecurityTokenHandler().WriteToken(token)).ToString() });
+        var expires = request.rememberMe ? 240 : 30;
+        return Ok(new { token = (new JwtSecurityTokenHandler().WriteToken(token)).ToString(), expiresIn = expires });
     }
 
     [HttpGet("logged-username")]
