@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using CloudBees.BLL.DTOs;
 using CloudBees.BLL.Services.Interfaces;
+using CloudBees.Common.DTOs;
 using CloudBees.DAL.Entities;
 using CloudBees.DAL.Repositories.Interfaces;
 
@@ -32,7 +33,15 @@ public class AlertService : IAlertService
         return _mapper.Map<IEnumerable<Alert>, IEnumerable<AlertDTO>>(result);
     }
 
-
+    public async Task<IEnumerable<AlertDTO>?> GetAlertByFilters(FiltersAlert filters)
+    {
+        var result = await _alertRepository.GetAlertByFilters(filters);
+        if(result.Count() <= 0)
+        {
+            return null;
+        }
+        return _mapper.Map<IEnumerable<Alert>, IEnumerable<AlertDTO>>(result);
+    }
 
     public async Task<string> PostAlert(AlertRequestDTO alert, User user)
     {
@@ -57,4 +66,6 @@ public class AlertService : IAlertService
         var result = await _alertRepository.GetAlertByIdAsync(id);
         return _mapper.Map<AlertDTO>(result);
     }
+
+    
 }

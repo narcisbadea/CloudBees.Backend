@@ -1,4 +1,5 @@
-﻿using CloudBees.DAL.Entities;
+﻿using CloudBees.Common.DTOs;
+using CloudBees.DAL.Entities;
 using CloudBees.DAL.Repositories.Interfaces;
 using Microsoft.EntityFrameworkCore;
 
@@ -18,6 +19,7 @@ public class AlertRepository : IAlertRepository
         return await _dbcontrext.Alerts
             .Include(a => a.User)
             .Include(a => a.Type)
+            .Where(a => a.Status != "Closed")
             .AsNoTracking()
             .ToListAsync();
     }
@@ -69,5 +71,25 @@ public class AlertRepository : IAlertRepository
             .Include(a => a.Type)
             .FirstOrDefaultAsync(a => a.Id == id);
         return result;
+    }
+
+    public async Task<IEnumerable<Alert>?> GetAlertByFilters(FiltersAlert filters)
+    {
+        var alerts = _dbcontrext.Alerts
+            .Include(a => a.User)
+            .Include(a => a.Type)
+            .Where(a => a.Status != "Closed")
+            .AsQueryable();
+
+        if (filters.Name != null)
+        {
+            alerts = alerts.Where(a => (a.User.FirstName + " " + a.User.LastName).ToUpper().Contains(filters.Name.ToUpper()));
+        }
+        if (filters.AlertTypeId != null)
+        {
+            alerts = alerts.Where(a => a.Type.Id == filters.AlertTypeId);
+        }
+
+        return await alerts.ToListAsync();
     }
 }

@@ -20,4 +20,8 @@
     </PackageReference>
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\CloudBees.Common\CloudBees.Common.csproj" />
+  </ItemGroup>
+
 </Project>

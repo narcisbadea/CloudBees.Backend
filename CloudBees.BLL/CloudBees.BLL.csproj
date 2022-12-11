@@ -7,6 +7,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\CloudBees.Common\CloudBees.Common.csproj" />
     <ProjectReference Include="..\CloudBees.DAL\CloudBees.DAL.csproj" />
   </ItemGroup>
 

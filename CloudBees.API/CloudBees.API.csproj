@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\CloudBees.BLL\CloudBees.BLL.csproj" />
+    <ProjectReference Include="..\CloudBees.Common\CloudBees.Common.csproj" />
     <ProjectReference Include="..\CloudBees.DAL\CloudBees.DAL.csproj" />
   </ItemGroup>
 

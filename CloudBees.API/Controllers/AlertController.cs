@@ -2,12 +2,9 @@
 using CloudBees.BLL;
 using CloudBees.BLL.DTOs;
 using CloudBees.BLL.Services.Interfaces;
+using CloudBees.Common.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Nest;
-using System.Data;
-using System.Net;
-using System.Text;
 
 namespace CloudBees.API.Controllers;
 
@@ -30,6 +27,17 @@ public class AlertController : ControllerBase
     public async Task<ActionResult<IEnumerable<AlertDTO>>> GetAllAlerts()
     {
         var result = await _alertService.GetAll();
+        return Ok(result);
+    }
+
+    [HttpGet("filtered")]
+    public async Task<ActionResult<IEnumerable<AlertDTO>>> GetFilteredAlerts([FromQuery]FiltersAlert filters)
+    {
+        var result = await _alertService.GetAlertByFilters(filters);
+        if (result == null)
+        {
+            return NoContent();
+        }
         return Ok(result);
     }
 

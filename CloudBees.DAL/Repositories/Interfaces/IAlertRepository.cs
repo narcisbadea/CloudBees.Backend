@@ -1,10 +1,12 @@
-﻿using CloudBees.DAL.Entities;
+﻿using CloudBees.Common.DTOs;
+using CloudBees.DAL.Entities;
 
 namespace CloudBees.DAL.Repositories.Interfaces
 {
     public interface IAlertRepository
     {
         Task<string> DeleteAlert(string id);
+        Task<IEnumerable<Alert>?> GetAlertByFilters(FiltersAlert filters);
         Task<Alert?> GetAlertByIdAsync(string id);
         Task<IEnumerable<Alert>?> GetAllAlerts();
         Task<IEnumerable<Alert>?> GetAllAlertsForLoggedUser(string idUser);
