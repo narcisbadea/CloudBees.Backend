@@ -30,8 +30,8 @@ public class AlertController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("filtered")]
-    public async Task<ActionResult<IEnumerable<AlertDTO>>> GetFilteredAlerts([FromQuery]FiltersAlert filters)
+    [HttpPost("filtered")]
+    public async Task<ActionResult<IEnumerable<AlertDTO>>> GetFilteredAlerts([FromBody]FiltersAlert filters)
     {
         var result = await _alertService.GetAlertByFilters(filters);
         if (result == null)
