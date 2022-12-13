@@ -35,6 +35,8 @@ public class AlertService : IAlertService
 
     public async Task<IEnumerable<AlertDTO>?> GetAlertByFilters(FiltersAlert filters)
     {
+        if (filters.AlertTypeId == "") filters.AlertTypeId = null;
+        if (filters.Name == "") filters.Name = null;
         var result = await _alertRepository.GetAlertByFilters(filters);
         if(result.Count() <= 0)
         {
