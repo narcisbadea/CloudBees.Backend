@@ -44,5 +44,4 @@ public class UserRepository : IUserRepository
         var result = await _userManager.FindByNameAsync(name);
         return result;
     }
-
 }

@@ -15,5 +15,6 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.Type, opt => opt.MapFrom(src => src.Type.Type))
             .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User.FirstName + " " + src.User.LastName));
         CreateMap<AlertType, AlertTypeDTO>();
+        CreateMap<User, UserProfileDTO>();
     }
 }
