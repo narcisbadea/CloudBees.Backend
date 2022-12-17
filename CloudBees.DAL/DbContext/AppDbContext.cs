@@ -11,7 +11,7 @@ public class AppDbContext : IdentityDbContext<User, Role, string>
 {
     private readonly IConfiguration _configuration;
 
-    public AppDbContext(DbContextOptions options, IConfiguration configuration) : base(options)
+    public AppDbContext(IConfiguration configuration) : base()
     {
         _configuration = configuration;
     }
