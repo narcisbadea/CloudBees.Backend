@@ -18,12 +18,12 @@ public class StatsRepository : IStatsRepository
 
     public async Task<IEnumerable<AlertsStats>> GetAllAlertsStatsAsync()
     {
-        return await _dbContext.AlertsStats.ToListAsync();
+        return await _dbContext.AlertsStats.OrderByDescending(s => s.Date).ToListAsync();
     }
 
     public async Task<IEnumerable<UsersStats>> GetAllUserStats()
     {
-        return await _dbContext.UsersStats.ToListAsync();
+        return await _dbContext.UsersStats.OrderByDescending(s => s.Date).ToListAsync();
     }
 
     public async Task<AlertsStats?> GetLastAlertsStats()
