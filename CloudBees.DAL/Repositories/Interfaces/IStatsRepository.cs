@@ -6,5 +6,6 @@ namespace CloudBees.DAL.Repositories.Interfaces
     {
         Task<IEnumerable<AlertsStats>> GetAllAlertsStatsAsync();
         Task<IEnumerable<UsersStats>> GetAllUserStats();
+        Task<AlertsStats?> GetLastAlertsStats();
     }
 }

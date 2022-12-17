@@ -41,4 +41,9 @@ public class StatsService : IStatsService
         }
         return _mapper.Map<IEnumerable<UsersStats>, IEnumerable<UserStatsDTO>>(result);
     }
+
+    public async Task<AlertsStatsDTO?> GetLastAlertsStats()
+    {
+        return _mapper.Map<AlertsStatsDTO>(await _statsRepository.GetLastAlertsStats());
+    }
 }

@@ -1,8 +1,6 @@
 ﻿using CloudBees.DAL.Database;
-using CloudBees.DAL.Entities;
 using CloudBees.DAL.Entitis;
 using CloudBees.DAL.Repositories.Interfaces;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
 
@@ -26,5 +24,10 @@ public class StatsRepository : IStatsRepository
     public async Task<IEnumerable<UsersStats>> GetAllUserStats()
     {
         return await _dbContext.UsersStats.ToListAsync();
+    }
+
+    public async Task<AlertsStats?> GetLastAlertsStats()
+    {
+        return await _dbContext.AlertsStats.OrderByDescending(s => s.Date).FirstOrDefaultAsync();
     }
 }

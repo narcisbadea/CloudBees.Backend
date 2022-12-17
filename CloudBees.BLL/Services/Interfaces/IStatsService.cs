@@ -1,4 +1,5 @@
 ﻿using CloudBees.BLL.DTOs;
+using CloudBees.DAL.Entitis;
 
 namespace CloudBees.BLL.Services.Interfaces
 {
@@ -6,5 +7,6 @@ namespace CloudBees.BLL.Services.Interfaces
     {
         Task<IEnumerable<AlertsStatsDTO>> GetAllAlertsStatsAsync();
         Task<IEnumerable<UserStatsDTO>> GetAllUserStatsAsync();
+        Task<AlertsStatsDTO?> GetLastAlertsStats();
     }
 }

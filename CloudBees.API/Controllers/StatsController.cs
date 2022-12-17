@@ -16,13 +16,9 @@ public class StatsController : ControllerBase
     }
 
     [HttpGet("alerts")]
-    public async Task<ActionResult<IEnumerable<AlertsStatsDTO>>> GetAllAlertsStats()
+    public async Task<ActionResult<AlertsStatsDTO>> GetAllAlertsStats()
     {
-        var result = await _statsService.GetAllAlertsStatsAsync();
-        if(result.Count() == 0)
-        {
-            return NoContent();
-        }
+        var result = await _statsService.GetLastAlertsStats();
         return Ok(result);
     }
 
