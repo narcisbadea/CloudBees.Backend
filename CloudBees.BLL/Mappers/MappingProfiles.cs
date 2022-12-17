@@ -1,6 +1,7 @@
 using AutoMapper;
 using CloudBees.BLL.DTOs;
 using CloudBees.DAL.Entities;
+using CloudBees.DAL.Entitis;
 
 namespace CloudBees.BLL.Mapper;
 
@@ -16,5 +17,7 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User.FirstName + " " + src.User.LastName));
         CreateMap<AlertType, AlertTypeDTO>();
         CreateMap<User, UserProfileDTO>();
+        CreateMap<AlertsStats, AlertsStatsDTO>();
+        CreateMap<UsersStats, UserStatsDTO>();
     }
 }

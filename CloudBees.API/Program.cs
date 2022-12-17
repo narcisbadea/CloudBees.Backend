@@ -2,6 +2,7 @@ using CloudBees.BLL.Mapper;
 using CloudBees.BLL.Services.Implementation;
 using CloudBees.BLL.Services.Interfaces;
 using CloudBees.DAL;
+using CloudBees.DAL.Database;
 using CloudBees.DAL.Entities;
 using CloudBees.DAL.Repositories.Implementation;
 using CloudBees.DAL.Repositories.Interfaces;
@@ -22,6 +23,7 @@ builder.Services.AddScoped<IAlertService, AlertService>();
 builder.Services.AddScoped<IAlertTypeService, AlertTypeService>();
 builder.Services.AddScoped<IUserService, UserService>();
 builder.Services.AddScoped<IEmailService, EmailService>();
+builder.Services.AddScoped<IStatsService, StatsService>();
 builder.Services.AddHttpContextAccessor();
 
 
@@ -29,10 +31,10 @@ builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserRepository, UserRepository>();
 builder.Services.AddScoped<IAlertRepository, AlertRepository>();
 builder.Services.AddScoped<IAlertTypeRepository, AlertTypeRepository>();
+builder.Services.AddScoped<IStatsRepository, StatsRepository>();
 
-var connectionString = builder.Configuration["ConnectionStrings:SQLserver"];
-
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(connectionString));
+builder.Services.AddDbContext<AppDbContext>();
+builder.Services.AddDbContext<StatsDbContext>();
 
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle

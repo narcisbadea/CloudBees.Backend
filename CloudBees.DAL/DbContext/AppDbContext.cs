@@ -16,6 +16,10 @@ public class AppDbContext : IdentityDbContext<User, Role, string>
         _configuration = configuration;
     }
 
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+    {
+        optionsBuilder.UseSqlServer(_configuration.GetConnectionString("SQLserver"));
+    }
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
