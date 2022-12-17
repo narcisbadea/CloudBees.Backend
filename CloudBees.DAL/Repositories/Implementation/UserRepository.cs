@@ -10,11 +10,13 @@ public class UserRepository : IUserRepository
 {
     private readonly AppDbContext _dbContext;
     private readonly UserManager<User> _userManager;
+    private readonly RoleManager<Role> _roleManager;
 
-    public UserRepository(AppDbContext dbContext, UserManager<User> userManager)
+    public UserRepository(AppDbContext dbContext, UserManager<User> userManager, RoleManager<Role> roleManager)
     {
         _dbContext = dbContext;
         _userManager = userManager;
+        _roleManager = roleManager;
     }
 
 

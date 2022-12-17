@@ -40,6 +40,7 @@ public class AuthService : IAuthService
             return "Error";
         }
         var savedUser = await _userManager.FindByEmailAsync(signup.Email);
+        await _userManager.AddToRoleAsync(savedUser, "User");
         if (savedUser == null)
         {
             return "Error";

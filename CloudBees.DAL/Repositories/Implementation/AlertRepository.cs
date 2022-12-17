@@ -92,4 +92,20 @@ public class AlertRepository : IAlertRepository
 
         return await alerts.ToListAsync();
     }
+
+    public async Task<bool> CloseAlertAsync(string alertId)
+    {
+        var alert = await GetAlertByIdAsync(alertId);
+        if (alert == null)
+        {
+            return false;
+        }
+        alert.Status = "Closed";
+        var result = await _dbcontrext.SaveChangesAsync();
+        if(result == 0)
+        {
+            return false;
+        }
+        return true;
+    }
 }

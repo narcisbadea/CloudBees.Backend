@@ -6,6 +6,7 @@ namespace CloudBees.BLL.Services.Interfaces
 {
     public interface IAlertService
     {
+        Task<bool> CloseAlert(string alertId);
         Task<string> DeleteAlert(string id);
         Task<IEnumerable<AlertDTO>?> GetAlertByFilters(FiltersAlert filters);
         Task<AlertDTO?> GetAlertByIdAsync(string id);

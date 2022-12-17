@@ -69,5 +69,10 @@ public class AlertService : IAlertService
         return _mapper.Map<AlertDTO>(result);
     }
 
+    public async Task<bool> CloseAlert(string alertId)
+    {
+        return await _alertRepository.CloseAlertAsync(alertId);
+    }
+
     
 }
