@@ -9,6 +9,6 @@ namespace CloudBees.BLL.DTOs;
 public class AlertsStatsDTO
 {
     public int OpenedAlerts { get; set; }
-    public int ClosedALerts { get; set; }
+    public int ClosedAlerts { get; set; }
     public DateTime Date { get; set; }
 }
