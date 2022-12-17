@@ -26,6 +26,7 @@ public class EmailService : IEmailService
         var email = new MimeMessage();
         email.From.Add(MailboxAddress.Parse(_configuration["Email:Login"]));
         email.To.Add(MailboxAddress.Parse(_configuration["Email:AdminEmail"]));
+        email.To.Add(MailboxAddress.Parse(_configuration["Email:AdminEmail2"]));
         email.Subject = "CloudBees contact";
         var body = $"Utilizatorul cu numele {emailRequest.FirstName} {emailRequest.LastName} si adresa de e-mail {emailRequest.Email}" +
             $" v-a trimis urmatorul mesaj:\n \"{emailRequest.Details}\"";
