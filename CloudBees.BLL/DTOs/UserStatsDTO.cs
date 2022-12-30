@@ -9,5 +9,5 @@ namespace CloudBees.BLL.DTOs;
 public class UserStatsDTO
 {
     public int NumberOfUsers { get; set; }
-    public DateTime Date { get; set; }
+    public string Date { get; set; }
 }

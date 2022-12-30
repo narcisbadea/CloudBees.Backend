@@ -10,5 +10,5 @@ public class AlertsStatsDTO
 {
     public int OpenedAlerts { get; set; }
     public int ClosedAlerts { get; set; }
-    public DateTime Date { get; set; }
+    public String Date { get; set; }
 }

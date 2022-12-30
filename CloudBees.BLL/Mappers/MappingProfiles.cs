@@ -17,7 +17,9 @@ public class MappingProfiles : Profile
             .ForMember(dest => dest.User, opt => opt.MapFrom(src => src.User.FirstName + " " + src.User.LastName));
         CreateMap<AlertType, AlertTypeDTO>();
         CreateMap<User, UserProfileDTO>();
-        CreateMap<AlertsStats, AlertsStatsDTO>();
-        CreateMap<UsersStats, UserStatsDTO>();
+        CreateMap<AlertsStats, AlertsStatsDTO>()
+            .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date.Year.ToString().Substring(2)+"/"+src.Date.Month+"/"+src.Date.Day+"-"+src.Date.Hour));
+        CreateMap<UsersStats, UserStatsDTO>()
+            .ForMember(dest => dest.Date, opt => opt.MapFrom(src => src.Date.Year.ToString().Substring(2) + "/" + src.Date.Month + "/" + src.Date.Day + "-" + src.Date.Hour)); ;
     }
 }
