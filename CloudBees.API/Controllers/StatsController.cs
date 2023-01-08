@@ -17,7 +17,7 @@ public class StatsController : ControllerBase
     }
 
     [HttpGet("alerts")]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public async Task<ActionResult<AlertsStatsDTO>> GetAllAlertsStats()
     {
         var result = await _statsService.GetAllAlertsStatsAsync();
@@ -25,7 +25,7 @@ public class StatsController : ControllerBase
     }
 
     [HttpGet("users")]
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public async Task<ActionResult<IEnumerable<UserStatsDTO>>> GetAllUserStats()
     {
         var result = await _statsService.GetAllUserStatsAsync();
