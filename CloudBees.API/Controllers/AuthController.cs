@@ -11,11 +11,12 @@ namespace CloudBees.API.Controllers;
 public class AuthController : ControllerBase
 {
     private readonly IAuthService _authService;
-    privae
+    private readonly IUserService _userService;
 
-    public AuthController(IAuthService authService)
+    public AuthController(IAuthService authService, IUserService userService)
     {
         _authService = authService;
+        _userService = userService;
     }
 
 
@@ -35,8 +36,13 @@ public class AuthController : ControllerBase
         }
         var token = await _authService.GenerateToken(request, request.rememberMe);
         var expires = request.rememberMe ? 240 : 30;
-        var roles = await _user
-        return Ok(new { token = (new JwtSecurityTokenHandler().WriteToken(token)).ToString(), expiresIn = expires, role = "Admin" });
+        var roles = await _userService.GetUserRoles(request.Email);
+        var role = "User";
+        if (roles.Contains("Admin"))
+        {
+            role = "Admin";
+        }
+        return Ok(new { token = (new JwtSecurityTokenHandler().WriteToken(token)).ToString(), expiresIn = expires, role = role });
     }
 
     [HttpGet("logged-username")]
