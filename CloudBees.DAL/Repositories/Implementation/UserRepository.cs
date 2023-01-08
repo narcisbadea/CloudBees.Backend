@@ -46,4 +46,11 @@ public class UserRepository : IUserRepository
         var result = await _userManager.FindByNameAsync(name);
         return result;
     }
+
+    public async Task<List<string>> GetUserRoles(string email)
+    {
+        var user = await _dbContext.Users.Where(u => u.Email == email).FirstOrDefaultAsync();
+        var result = await _userManager.GetRolesAsync(user);
+        return result.ToList();
+    }
 }

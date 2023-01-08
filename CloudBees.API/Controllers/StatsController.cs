@@ -1,5 +1,6 @@
 ﻿using CloudBees.BLL.DTOs;
 using CloudBees.BLL.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace CloudBees.API.Controllers;
@@ -16,6 +17,7 @@ public class StatsController : ControllerBase
     }
 
     [HttpGet("alerts")]
+    [Authorize("Admin")]
     public async Task<ActionResult<AlertsStatsDTO>> GetAllAlertsStats()
     {
         var result = await _statsService.GetAllAlertsStatsAsync();
@@ -23,6 +25,7 @@ public class StatsController : ControllerBase
     }
 
     [HttpGet("users")]
+    [Authorize("Admin")]
     public async Task<ActionResult<IEnumerable<UserStatsDTO>>> GetAllUserStats()
     {
         var result = await _statsService.GetAllUserStatsAsync();

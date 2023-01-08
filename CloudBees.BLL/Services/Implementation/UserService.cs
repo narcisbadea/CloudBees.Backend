@@ -28,4 +28,10 @@ public class UserService : IUserService
         var loggedUser = await _authService.GetLoggedUser();
         return _mapper.Map<UserProfileDTO>(loggedUser);
     }
+
+    public async Task<List<string>> GetUserRoles(string email)
+    {
+        var result = await _userRepository.GetUserRoles(email);
+        return result;
+    }
 }

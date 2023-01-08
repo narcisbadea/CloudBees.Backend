@@ -8,5 +8,6 @@ namespace CloudBees.DAL.Repositories.Interfaces
         Task DeleteUserAsync(User user);
         Task<User> GetUserById(string userId);
         Task<User> GetUserByName(string name);
+        Task<List<string>> GetUserRoles(string email);
     }
 }
